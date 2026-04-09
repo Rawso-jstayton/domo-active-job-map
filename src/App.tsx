@@ -28,6 +28,7 @@ interface Job {
   estProfit: number | null;
   billedJTD: number | null;
   projectedCost: number | null;
+  originalEstimate: number | null;
 }
 
 // ─── Division → readable job type ────────────────────────────────────────────
@@ -101,21 +102,21 @@ function PanTo({ job }: { job: Job | null }) {
 
 // ─── Static fallback data (real Rawso jobs) ──────────────────────────────────
 const FALLBACK: Job[] = [
-  { code:'1142', description:'Harmon West',              status:'active',    latitude:36.110505,   longitude:-86.920735,  address1:'7315 Sonya Dr',             city:'Nashville',     state:'TN', zip:'37209', createdDate:'2024-03-12', jobType:'Residential',   division:'RES',  startDate:'2024-03-12', estCompleteDate:'2026-06-30', originalContract:2100000, pmCode:'0688', percentComplete:45, estProfit:189000,   billedJTD:945000,   projectedCost:1911000 },
-  { code:'1144', description:'Thompson South Lot',       status:'active',    latitude:36.2431717,  longitude:-86.7841633, address1:'3366 Briley Pkwy',          city:'Nashville',     state:'TN', zip:'',      createdDate:'2024-05-06', jobType:'Commercial',    division:'COM',  startDate:'2024-05-06', estCompleteDate:'2025-12-31', originalContract:850000,  pmCode:'0473', percentComplete:72, estProfit:76500,    billedJTD:612000,   projectedCost:773500  },
-  { code:'1149', description:'Stream Central Pike',      status:'active',    latitude:36.07405,    longitude:-86.23318,   address1:'15198 Central Pike',        city:'Lebanon',       state:'TN', zip:'37090', createdDate:'2025-07-14', jobType:'Industrial',    division:'IND',  startDate:'2025-07-14', estCompleteDate:'2026-09-30', originalContract:3400000, pmCode:'0473', percentComplete:18, estProfit:306000,   billedJTD:612000,   projectedCost:3094000 },
-  { code:'1153', description:'Nolensville Town Square',  status:'active',    latitude:35.944792,   longitude:-86.666941,  address1:'7375 Nolensville Rd',       city:'Nolensville',   state:'TN', zip:'37135', createdDate:'2024-11-06', jobType:'Residential',   division:'RES',  startDate:'2024-11-06', estCompleteDate:'2026-08-30', originalContract:1750000, pmCode:'0794', percentComplete:30, estProfit:157500,   billedJTD:525000,   projectedCost:1592500 },
-  { code:'1154', description:"Sam's Club",               status:'active',    latitude:36.18559625, longitude:-86.32765265,address1:'600 Willard Hagan Dr',      city:'Lebanon',       state:'TN', zip:'37090', createdDate:'2024-11-15', jobType:'Industrial',    division:'IND',  startDate:'2024-11-15', estCompleteDate:'2025-11-30', originalContract:2800000, pmCode:'0473', percentComplete:60, estProfit:252000,   billedJTD:1680000,  projectedCost:2548000 },
-  { code:'1155', description:"Bucee's Fuel Center",      status:'active',    latitude:35.785068,   longitude:-86.372472,  address1:'I-24 & Joe B Jackson Pkwy', city:'Murfreesboro',  state:'TN', zip:'',      createdDate:'2024-11-13', jobType:'Commercial',    division:'COM',  startDate:'2024-11-13', estCompleteDate:'2026-02-28', originalContract:4200000, pmCode:'0116', percentComplete:55, estProfit:378000,   billedJTD:2310000,  projectedCost:3822000 },
-  { code:'1156', description:"Buc-ee's Spoils Export",   status:'active',    latitude:35.781721,   longitude:-86.3759248, address1:'3355 Elam Road',            city:'Murfreesboro',  state:'TN', zip:'37127', createdDate:'2025-09-17', jobType:'Commercial',    division:'COM',  startDate:'2025-09-17', estCompleteDate:'2026-04-30', originalContract:620000,  pmCode:'0116', percentComplete:80, estProfit:55800,    billedJTD:496000,   projectedCost:564200  },
-  { code:'1157', description:'Stephens Valley Downtown', status:'active',    latitude:36.0310441,  longitude:-86.9642883, address1:'441 Union Bridge Rd',       city:'Nashville',     state:'TN', zip:'37221', createdDate:'2025-02-05', jobType:'Residential',   division:'RES',  startDate:'2025-02-05', estCompleteDate:'2026-10-31', originalContract:5100000, pmCode:'0794', percentComplete:25, estProfit:459000,   billedJTD:1275000,  projectedCost:4641000 },
-  { code:'1159', description:'TPA Springfield Highway',  status:'active',    latitude:36.34451,    longitude:-86.720039,  address1:'852-886 US-41',             city:'Goodlettsville',state:'TN', zip:'37072', createdDate:'2025-04-15', jobType:'Industrial',    division:'IND',  startDate:'2025-04-15', estCompleteDate:'2026-06-30', originalContract:1900000, pmCode:'0688', percentComplete:40, estProfit:171000,   billedJTD:760000,   projectedCost:1729000 },
-  { code:'1160', description:"Buc-ee's Offsite",         status:'active',    latitude:35.785068,   longitude:-86.372472,  address1:'I-24 & Joe B Jackson Pkwy', city:'Murfreesboro',  state:'TN', zip:'37130', createdDate:'2025-03-26', jobType:'Transportation',division:'TRAN', startDate:'2025-03-26', estCompleteDate:'2026-03-31', originalContract:480000,  pmCode:'0116', percentComplete:90, estProfit:43200,    billedJTD:432000,   projectedCost:436800  },
-  { code:'R1001',description:'Bradyville Pike Property', status:'active',    latitude:35.78931,    longitude:-86.29723,   address1:'5969 Bradyville Pike',      city:'Murfreesboro',  state:'TN', zip:'',      createdDate:'2019-01-22', jobType:'Miscellaneous', division:'MISC', startDate:'2019-01-22', estCompleteDate:'',           originalContract:null,    pmCode:'',     percentComplete:null,estProfit:null,      billedJTD:null,     projectedCost:null    },
-  { code:'9998', description:'Office / Internal',        status:'active',    latitude:35.85173,    longitude:-86.40334,   address1:'819 Scott Street',          city:'Murfreesboro',  state:'TN', zip:'37129', createdDate:'2019-01-22', jobType:'Miscellaneous', division:'MISC', startDate:'2019-01-22', estCompleteDate:'',           originalContract:null,    pmCode:'',     percentComplete:null,estProfit:null,      billedJTD:null,     projectedCost:null    },
-  { code:'1045', description:'TDOT CNS005 Williamson Co',status:'inactive',  latitude:35.854323,   longitude:-86.658868,  address1:'7960 Nolensville Rd',       city:'Arrington',     state:'TN', zip:'37014', createdDate:'2019-01-22', jobType:'Transportation',division:'DOT',  startDate:'2019-01-22', estCompleteDate:'2022-12-31', originalContract:1200000, pmCode:'',     percentComplete:98, estProfit:108000,   billedJTD:1176000,  projectedCost:1092000 },
-  { code:'1042', description:'Murfreesboro Fire #4',     status:'completed', latitude:35.857407,   longitude:-86.414837,  address1:'1839 Medical Center Pkwy',  city:'Murfreesboro',  state:'TN', zip:'37129', createdDate:'2019-01-22', jobType:'Commercial',    division:'COM',  startDate:'2019-01-22', estCompleteDate:'2021-06-30', originalContract:890000,  pmCode:'',     percentComplete:100,estProfit:80100,    billedJTD:890000,   projectedCost:809900  },
-  { code:'1044', description:'Benton Nissan',            status:'completed', latitude:35.65,       longitude:-87.011833,  address1:'1525 Nashville Highway',    city:'Columbia',      state:'TN', zip:'38401', createdDate:'2019-01-22', jobType:'Commercial',    division:'COM',  startDate:'2019-01-22', estCompleteDate:'2020-09-30', originalContract:760000,  pmCode:'',     percentComplete:100,estProfit:68400,    billedJTD:760000,   projectedCost:691600  },
+  { code:'1142', description:'Harmon West',              status:'active',    latitude:36.110505,   longitude:-86.920735,  address1:'7315 Sonya Dr',             city:'Nashville',     state:'TN', zip:'37209', createdDate:'2024-03-12', jobType:'Residential',   division:'RES',  startDate:'2024-03-12', estCompleteDate:'2026-06-30', originalContract:2100000, pmCode:'0688', percentComplete:45, estProfit:189000,   billedJTD:945000,   projectedCost:1911000, originalEstimate:1950000 },
+  { code:'1144', description:'Thompson South Lot',       status:'active',    latitude:36.2431717,  longitude:-86.7841633, address1:'3366 Briley Pkwy',          city:'Nashville',     state:'TN', zip:'',      createdDate:'2024-05-06', jobType:'Commercial',    division:'COM',  startDate:'2024-05-06', estCompleteDate:'2025-12-31', originalContract:850000,  pmCode:'0473', percentComplete:72, estProfit:76500,    billedJTD:612000,   projectedCost:773500,  originalEstimate:820000  },
+  { code:'1149', description:'Stream Central Pike',      status:'active',    latitude:36.07405,    longitude:-86.23318,   address1:'15198 Central Pike',        city:'Lebanon',       state:'TN', zip:'37090', createdDate:'2025-07-14', jobType:'Industrial',    division:'IND',  startDate:'2025-07-14', estCompleteDate:'2026-09-30', originalContract:3400000, pmCode:'0473', percentComplete:18, estProfit:306000,   billedJTD:612000,   projectedCost:3094000, originalEstimate:3200000 },
+  { code:'1153', description:'Nolensville Town Square',  status:'active',    latitude:35.944792,   longitude:-86.666941,  address1:'7375 Nolensville Rd',       city:'Nolensville',   state:'TN', zip:'37135', createdDate:'2024-11-06', jobType:'Residential',   division:'RES',  startDate:'2024-11-06', estCompleteDate:'2026-08-30', originalContract:1750000, pmCode:'0794', percentComplete:30, estProfit:157500,   billedJTD:525000,   projectedCost:1592500, originalEstimate:1680000 },
+  { code:'1154', description:"Sam's Club",               status:'active',    latitude:36.18559625, longitude:-86.32765265,address1:'600 Willard Hagan Dr',      city:'Lebanon',       state:'TN', zip:'37090', createdDate:'2024-11-15', jobType:'Industrial',    division:'IND',  startDate:'2024-11-15', estCompleteDate:'2025-11-30', originalContract:2800000, pmCode:'0473', percentComplete:60, estProfit:252000,   billedJTD:1680000,  projectedCost:2548000, originalEstimate:2650000 },
+  { code:'1155', description:"Bucee's Fuel Center",      status:'active',    latitude:35.785068,   longitude:-86.372472,  address1:'I-24 & Joe B Jackson Pkwy', city:'Murfreesboro',  state:'TN', zip:'',      createdDate:'2024-11-13', jobType:'Commercial',    division:'COM',  startDate:'2024-11-13', estCompleteDate:'2026-02-28', originalContract:4200000, pmCode:'0116', percentComplete:55, estProfit:378000,   billedJTD:2310000,  projectedCost:3822000, originalEstimate:4000000 },
+  { code:'1156', description:"Buc-ee's Spoils Export",   status:'active',    latitude:35.781721,   longitude:-86.3759248, address1:'3355 Elam Road',            city:'Murfreesboro',  state:'TN', zip:'37127', createdDate:'2025-09-17', jobType:'Commercial',    division:'COM',  startDate:'2025-09-17', estCompleteDate:'2026-04-30', originalContract:620000,  pmCode:'0116', percentComplete:80, estProfit:55800,    billedJTD:496000,   projectedCost:564200,  originalEstimate:590000  },
+  { code:'1157', description:'Stephens Valley Downtown', status:'active',    latitude:36.0310441,  longitude:-86.9642883, address1:'441 Union Bridge Rd',       city:'Nashville',     state:'TN', zip:'37221', createdDate:'2025-02-05', jobType:'Residential',   division:'RES',  startDate:'2025-02-05', estCompleteDate:'2026-10-31', originalContract:5100000, pmCode:'0794', percentComplete:25, estProfit:459000,   billedJTD:1275000,  projectedCost:4641000, originalEstimate:4800000 },
+  { code:'1159', description:'TPA Springfield Highway',  status:'active',    latitude:36.34451,    longitude:-86.720039,  address1:'852-886 US-41',             city:'Goodlettsville',state:'TN', zip:'37072', createdDate:'2025-04-15', jobType:'Industrial',    division:'IND',  startDate:'2025-04-15', estCompleteDate:'2026-06-30', originalContract:1900000, pmCode:'0688', percentComplete:40, estProfit:171000,   billedJTD:760000,   projectedCost:1729000, originalEstimate:1820000 },
+  { code:'1160', description:"Buc-ee's Offsite",         status:'active',    latitude:35.785068,   longitude:-86.372472,  address1:'I-24 & Joe B Jackson Pkwy', city:'Murfreesboro',  state:'TN', zip:'37130', createdDate:'2025-03-26', jobType:'Transportation',division:'TRAN', startDate:'2025-03-26', estCompleteDate:'2026-03-31', originalContract:480000,  pmCode:'0116', percentComplete:90, estProfit:43200,    billedJTD:432000,   projectedCost:436800,  originalEstimate:460000  },
+  { code:'R1001',description:'Bradyville Pike Property', status:'active',    latitude:35.78931,    longitude:-86.29723,   address1:'5969 Bradyville Pike',      city:'Murfreesboro',  state:'TN', zip:'',      createdDate:'2019-01-22', jobType:'Miscellaneous', division:'MISC', startDate:'2019-01-22', estCompleteDate:'',           originalContract:null,    pmCode:'',     percentComplete:null,estProfit:null,      billedJTD:null,     projectedCost:null,    originalEstimate:null    },
+  { code:'9998', description:'Office / Internal',        status:'active',    latitude:35.85173,    longitude:-86.40334,   address1:'819 Scott Street',          city:'Murfreesboro',  state:'TN', zip:'37129', createdDate:'2019-01-22', jobType:'Miscellaneous', division:'MISC', startDate:'2019-01-22', estCompleteDate:'',           originalContract:null,    pmCode:'',     percentComplete:null,estProfit:null,      billedJTD:null,     projectedCost:null,    originalEstimate:null    },
+  { code:'1045', description:'TDOT CNS005 Williamson Co',status:'inactive',  latitude:35.854323,   longitude:-86.658868,  address1:'7960 Nolensville Rd',       city:'Arrington',     state:'TN', zip:'37014', createdDate:'2019-01-22', jobType:'Transportation',division:'DOT',  startDate:'2019-01-22', estCompleteDate:'2022-12-31', originalContract:1200000, pmCode:'',     percentComplete:98, estProfit:108000,   billedJTD:1176000,  projectedCost:1092000, originalEstimate:1150000 },
+  { code:'1042', description:'Murfreesboro Fire #4',     status:'completed', latitude:35.857407,   longitude:-86.414837,  address1:'1839 Medical Center Pkwy',  city:'Murfreesboro',  state:'TN', zip:'37129', createdDate:'2019-01-22', jobType:'Commercial',    division:'COM',  startDate:'2019-01-22', estCompleteDate:'2021-06-30', originalContract:890000,  pmCode:'',     percentComplete:100,estProfit:80100,    billedJTD:890000,   projectedCost:809900,  originalEstimate:850000  },
+  { code:'1044', description:'Benton Nissan',            status:'completed', latitude:35.65,       longitude:-87.011833,  address1:'1525 Nashville Highway',    city:'Columbia',      state:'TN', zip:'38401', createdDate:'2019-01-22', jobType:'Commercial',    division:'COM',  startDate:'2019-01-22', estCompleteDate:'2020-09-30', originalContract:760000,  pmCode:'',     percentComplete:100,estProfit:68400,    billedJTD:760000,   projectedCost:691600,  originalEstimate:730000  },
 ];
 
 // ─── Main App ─────────────────────────────────────────────────────────────────
@@ -186,6 +187,7 @@ export default function App() {
           originalContract: sp['Original_Contract'] != null ? Number(sp['Original_Contract']) : null,
           pmCode:           String(sp['Project_Manager'] ?? '').trim(),
           percentComplete:  tot['Percent_Complete'] != null ? Number(tot['Percent_Complete']) : null,
+          originalEstimate: tot['Original_Estimate'] != null ? Number(tot['Original_Estimate']) : null,
           estProfit:        tot['Est_Profit']  != null ? Number(tot['Est_Profit'])  : null,
           billedJTD:        tot['Billed_JTD']  != null ? Number(tot['Billed_JTD'])  : null,
           projectedCost:    tot['Projected_Cost'] != null ? Number(tot['Projected_Cost']) : null,
@@ -294,18 +296,15 @@ export default function App() {
                 </div>
               )}
 
-              {/* Hero blank bar */}
-              {selected.originalContract != null && (
-                <div className="hero-bar-wrap">
-                  <div className="hero-bar-track">
-                    <div className="hero-bar-fill" style={{ background: statusColor(selected.status) }} />
-                  </div>
-                </div>
-              )}
-
               {/* Financials — labels only, no dollar amounts */}
-              {(selected.estProfit != null || selected.billedJTD != null) && (
+              {(selected.originalEstimate != null || selected.estProfit != null || selected.billedJTD != null) && (
                 <div className="fin-grid">
+                  {selected.originalEstimate != null && (
+                    <div className="fin-cell">
+                      <div className="fin-label">Original Estimate</div>
+                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: '100%', background: '#F36E2240' }} /></div>
+                    </div>
+                  )}
                   {selected.billedJTD != null && selected.originalContract != null && (
                     <div className="fin-cell">
                       <div className="fin-label">Billed JTD</div>
@@ -365,16 +364,6 @@ export default function App() {
                 <div className="detail-value mono">{selected.latitude.toFixed(5)}, {selected.longitude.toFixed(5)}</div>
               </div>
 
-              <button
-                className="maps-link"
-                onClick={() => window.open(
-                  `https://www.google.com/maps/search/?api=1&query=${selected.latitude},${selected.longitude}`,
-                  '_blank',
-                  'noopener,noreferrer'
-                )}
-              >
-                Open in Google Maps ↗
-              </button>
             </>
           ) : (
             <div className="detail-empty">
