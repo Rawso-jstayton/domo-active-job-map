@@ -7,5 +7,7 @@
   },
   "fullpage": true,
   "thumbnail": "thumbnail.png",
-  "datasetsMapping": []
+  "datasetsMapping": [],
+  "fileName": "manifest.json",
+  "id": "7272ecf1-63b6-413c-8169-82715465d817"
 }
