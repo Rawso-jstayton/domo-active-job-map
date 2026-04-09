@@ -95,11 +95,11 @@ function buildIcon(color: string, selected: boolean) {
   });
 }
 
-// ─── FlyTo helper ─────────────────────────────────────────────────────────────
-function FlyTo({ job }: { job: Job | null }) {
+// ─── PanTo helper (no zoom change) ───────────────────────────────────────────
+function PanTo({ job }: { job: Job | null }) {
   const map = useMap();
   useEffect(() => {
-    if (job) map.flyTo([job.latitude, job.longitude], 14, { duration: 0.8 });
+    if (job) map.panTo([job.latitude, job.longitude], { animate: true, duration: 0.5 });
   }, [job, map]);
   return null;
 }
@@ -255,7 +255,7 @@ export default function App() {
                 subdomains="abcd"
                 maxZoom={20}
               />
-              <FlyTo job={flyTarget} />
+              <PanTo job={flyTarget} />
               {filtered.map(job => (
                 <Marker
                   key={job.code}
@@ -368,14 +368,16 @@ export default function App() {
                 <div className="detail-value mono">{selected.latitude.toFixed(5)}, {selected.longitude.toFixed(5)}</div>
               </div>
 
-              <a
+              <button
                 className="maps-link"
-                href={`https://www.google.com/maps/search/?api=1&query=${selected.latitude},${selected.longitude}`}
-                target="_blank"
-                rel="noreferrer"
+                onClick={() => window.open(
+                  `https://www.google.com/maps/search/?api=1&query=${selected.latitude},${selected.longitude}`,
+                  '_blank',
+                  'noopener,noreferrer'
+                )}
               >
                 Open in Google Maps ↗
-              </a>
+              </button>
             </>
           ) : (
             <div className="detail-empty">
