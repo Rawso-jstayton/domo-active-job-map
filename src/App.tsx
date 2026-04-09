@@ -294,15 +294,18 @@ export default function App() {
                 </div>
               )}
 
+              {/* Hero blank bar */}
+              {selected.originalContract != null && (
+                <div className="hero-bar-wrap">
+                  <div className="hero-bar-track">
+                    <div className="hero-bar-fill" style={{ background: statusColor(selected.status) }} />
+                  </div>
+                </div>
+              )}
+
               {/* Financials — labels only, no dollar amounts */}
-              {(selected.originalContract != null || selected.estProfit != null || selected.billedJTD != null) && (
+              {(selected.estProfit != null || selected.billedJTD != null) && (
                 <div className="fin-grid">
-                  {selected.originalContract != null && (
-                    <div className="fin-cell">
-                      <div className="fin-label">Contract</div>
-                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: '100%', background: '#F36E2240' }} /></div>
-                    </div>
-                  )}
                   {selected.billedJTD != null && selected.originalContract != null && (
                     <div className="fin-cell">
                       <div className="fin-label">Billed JTD</div>
