@@ -372,14 +372,22 @@ body {
   margin-bottom: 3px;
 }
 
-.fin-value {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--text);
+.fin-bar-wrap {
+  height: 8px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+  margin-top: 6px;
 }
 
-.fin-value.profit {
-  color: #22c55e;
+.fin-bar {
+  height: 100%;
+  border-radius: 99px;
+  min-width: 4px;
+}
+
+.fin-bar.profit-bar {
+  background: #22c55e60;
 }
 
 /* ── Detail row (side by side) ────────────────────────────────────────────── */

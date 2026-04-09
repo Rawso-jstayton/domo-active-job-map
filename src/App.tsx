@@ -60,11 +60,6 @@ function statusColor(s: string): string {
   }
 }
 
-function fmt$( n: number | null ): string {
-  if (n == null) return '—';
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n);
-}
-
 function fmtDate(s: string): string {
   if (!s) return '—';
   const d = new Date(s);
@@ -287,12 +282,11 @@ export default function App() {
                 {selected.jobType && <span className="badge type-badge">{selected.jobType}</span>}
               </div>
 
-              {/* Progress bar */}
+              {/* Progress bar — no % label */}
               {selected.percentComplete != null && (
                 <div className="progress-wrap">
                   <div className="progress-label">
                     <span>Progress</span>
-                    <span>{selected.percentComplete.toFixed(0)}%</span>
                   </div>
                   <div className="progress-track">
                     <div className="progress-fill" style={{ width: `${Math.min(selected.percentComplete, 100)}%`, background: statusColor(selected.status) }} />
@@ -300,31 +294,31 @@ export default function App() {
                 </div>
               )}
 
-              {/* Financials */}
+              {/* Financials — labels only, no dollar amounts */}
               {(selected.originalContract != null || selected.estProfit != null || selected.billedJTD != null) && (
                 <div className="fin-grid">
                   {selected.originalContract != null && (
                     <div className="fin-cell">
                       <div className="fin-label">Contract</div>
-                      <div className="fin-value">{fmt$(selected.originalContract)}</div>
+                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: '100%', background: '#F36E2240' }} /></div>
                     </div>
                   )}
-                  {selected.billedJTD != null && (
+                  {selected.billedJTD != null && selected.originalContract != null && (
                     <div className="fin-cell">
                       <div className="fin-label">Billed JTD</div>
-                      <div className="fin-value">{fmt$(selected.billedJTD)}</div>
+                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: `${Math.min((selected.billedJTD / selected.originalContract) * 100, 100)}%`, background: '#4ECDC460' }} /></div>
                     </div>
                   )}
-                  {selected.estProfit != null && (
+                  {selected.estProfit != null && selected.originalContract != null && (
                     <div className="fin-cell">
                       <div className="fin-label">Est. Profit</div>
-                      <div className="fin-value profit">{fmt$(selected.estProfit)}</div>
+                      <div className="fin-bar-wrap"><div className="fin-bar profit-bar" style={{ width: `${Math.min((selected.estProfit / selected.originalContract) * 100, 100)}%` }} /></div>
                     </div>
                   )}
-                  {selected.projectedCost != null && (
+                  {selected.projectedCost != null && selected.originalContract != null && (
                     <div className="fin-cell">
                       <div className="fin-label">Projected Cost</div>
-                      <div className="fin-value">{fmt$(selected.projectedCost)}</div>
+                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: `${Math.min((selected.projectedCost / selected.originalContract) * 100, 100)}%`, background: '#94a3b840' }} /></div>
                     </div>
                   )}
                 </div>
