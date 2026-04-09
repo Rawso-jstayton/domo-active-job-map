@@ -1,0 +1,16 @@
+{
+  "name": "APP_NAME",
+  "version": "1.0.0",
+  "fullpage": true,
+  "size": {
+    "width": 4,
+    "height": 4
+  },
+  "mapping": [
+    {
+      "alias": "ALIAS_NAME",
+      "dataSetId": "DATASET_ID",
+      "fields": []
+    }
+  ]
+}

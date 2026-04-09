@@ -1,0 +1,45 @@
+{
+  "_comment": "Rawso brand colors. Dark theme is primary. See design-system/SKILL.md for full token reference and usage rules.",
+  "accent": "#F36E22",
+  "dark": {
+    "background": "#0F1117",
+    "card": "#171921",
+    "cardElevated": "#1E2029",
+    "border": "#2A2D37",
+    "borderSubtle": "#22242C",
+    "foreground": "#F4F4F5",
+    "foregroundSecondary": "#A1A1AA",
+    "foregroundTertiary": "#71717A",
+    "primary": "#F36E22",
+    "secondary": "#2A2D37",
+    "muted": "#22242C",
+    "mutedForeground": "#71717A"
+  },
+  "light": {
+    "background": "#F8F9FB",
+    "card": "#FFFFFF",
+    "border": "#E4E4E7",
+    "borderSubtle": "#F0F0F3",
+    "foreground": "#18181B",
+    "foregroundSecondary": "#52525B",
+    "foregroundTertiary": "#A1A1AA",
+    "primary": "#F36E22",
+    "muted": "#F4F4F5"
+  },
+  "semantic": {
+    "success": { "dark": "#22C55E", "light": "#16A34A" },
+    "warning": { "dark": "#F59E0B", "light": "#D97706" },
+    "error":   { "dark": "#EF4444", "light": "#DC2626" },
+    "info":    { "dark": "#3B82F6", "light": "#2563EB" }
+  },
+  "chartSequence": [
+    "#22D3EE",
+    "#F87171",
+    "#A78BFA",
+    "#FBBF24",
+    "#34D399",
+    "#F472B6",
+    "#38BDF8",
+    "#FB923C"
+  ]
+}

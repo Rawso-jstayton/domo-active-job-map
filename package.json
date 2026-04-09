@@ -1,0 +1,34 @@
+{
+  "name": "domo-dev-toolkit",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "A complete development toolkit for building DOMO dashboards and pro code apps with Claude Code.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "domo:auth": "node scripts/domo-auth-setup.js",
+    "domo:screenshot": "node scripts/domo-screenshot.js"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.2",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "~5.6.3",
+    "vite": "^5.4.11"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": ["esbuild"]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RAWSO-Constructors/domo-dev-toolkit.git"
+  },
+  "license": "ISC"
+}

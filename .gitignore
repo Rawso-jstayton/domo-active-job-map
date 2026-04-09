@@ -1,0 +1,28 @@
+node_modules/
+.DS_Store
+*.log
+dist/
+.env
+.env.*
+.env.local
+
+# DOMO CLI auth
+.domo/
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.auth/
+.auth/
+
+# QC screenshots (generated, not committed)
+qc-reports/screenshots/
+
+# GSD planning docs (codebase maps, research — not for template clones)
+.planning/
+
+# MCP server config (contains credentials)
+.mcp.json
+
+# OS files
+Thumbs.db

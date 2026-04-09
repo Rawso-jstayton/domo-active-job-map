@@ -1,0 +1,111 @@
+/* globals.css — Tailwind + shadcn/ui + Rawso Design System
+   Dark theme is primary (.dark on <html>). Light theme is :root default.
+   See design-system skill for full brand reference and color rationale. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   Light Theme (default :root)
+   Based on Rawso light palette — #F8F9FB background, #18181B text
+   ============================================================ */
+@layer base {
+  :root {
+    --background: 220 27% 98%;         /* #F8F9FB */
+    --foreground: 240 6% 10%;          /* #18181B */
+    --card: 0 0% 100%;                 /* #FFFFFF */
+    --card-foreground: 240 6% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 6% 10%;
+    --primary: 22 90% 54%;             /* #F36E22 — Rawso Orange */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 6% 90%;           /* #E4E4E7 */
+    --secondary-foreground: 240 6% 10%;
+    --muted: 240 5% 96%;               /* #F4F4F5 */
+    --muted-foreground: 240 5% 34%;    /* #52525B */
+    --accent: 22 90% 54%;              /* #F36E22 */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 71% 51%;          /* #DC2626 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 6% 90%;              /* #E4E4E7 */
+    --input: 240 5% 96%;               /* #F4F4F5 */
+    --ring: 22 90% 54%;                /* #F36E22 */
+    --radius: 0.5rem;
+
+    /* Rawso semantic tokens */
+    --success: 142 76% 36%;            /* #16A34A */
+    --warning: 32 95% 44%;             /* #D97706 */
+    --error: 0 71% 51%;                /* #DC2626 */
+    --info: 221 83% 53%;               /* #2563EB */
+  }
+
+  /* Dark Theme — primary Rawso theme
+     Add class="dark" to <html> to activate (default for all Rawso apps) */
+  .dark {
+    --background: 225 14% 7%;          /* #0F1117 */
+    --foreground: 240 5% 96%;          /* #F4F4F5 */
+    --card: 225 14% 11%;               /* #171921 */
+    --card-foreground: 240 5% 96%;
+    --popover: 225 14% 13%;            /* #1E2029 */
+    --popover-foreground: 240 5% 96%;
+    --primary: 22 90% 54%;             /* #F36E22 — Rawso Orange */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 225 14% 19%;          /* #2A2D37 */
+    --secondary-foreground: 240 5% 91%;
+    --muted: 225 14% 15%;              /* #22242C */
+    --muted-foreground: 240 4% 46%;    /* #71717A */
+    --accent: 22 90% 54%;              /* #F36E22 */
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;          /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+    --border: 225 14% 19%;             /* #2A2D37 */
+    --input: 225 14% 19%;              /* #2A2D37 */
+    --ring: 22 90% 54%;                /* #F36E22 */
+    --radius: 0.5rem;
+
+    /* Rawso semantic tokens */
+    --success: 142 71% 45%;            /* #22C55E */
+    --warning: 38 91% 50%;             /* #F59E0B */
+    --error: 0 84% 60%;                /* #EF4444 */
+    --info: 217 91% 60%;               /* #3B82F6 */
+  }
+}
+
+/* ============================================================
+   Dark mode system settings
+   ============================================================ */
+html.dark {
+  color-scheme: dark; /* Fixes scrollbars, native inputs, selects on Windows */
+}
+
+/* ============================================================
+   DOMO-Specific Base Styles
+   ============================================================ */
+body {
+  background: transparent; /* DOMO cards handle their own background */
+  min-height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* ============================================================
+   ECharts Container Defaults
+   ============================================================ */
+.echarts-container {
+  width: 100%;
+  min-height: 300px;
+}
+
+/* ============================================================
+   Reduced Motion
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
