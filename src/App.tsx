@@ -296,31 +296,29 @@ export default function App() {
                 </div>
               )}
 
-              {/* Financials — labels only, no dollar amounts */}
-              {(selected.originalEstimate != null || selected.estProfit != null || selected.billedJTD != null) && (
+              {/* Financials — bars scaled relative to originalEstimate */}
+              {selected.originalEstimate != null && (
                 <div className="fin-grid">
-                  {selected.originalEstimate != null && (
-                    <div className="fin-cell">
-                      <div className="fin-label">Original Estimate</div>
-                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: '100%', background: '#F36E2240' }} /></div>
-                    </div>
-                  )}
-                  {selected.billedJTD != null && selected.originalContract != null && (
+                  <div className="fin-cell">
+                    <div className="fin-label">Original Estimate</div>
+                    <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: '100%', background: '#F36E2240' }} /></div>
+                  </div>
+                  {selected.billedJTD != null && (
                     <div className="fin-cell">
                       <div className="fin-label">Billed JTD</div>
-                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: `${Math.min((selected.billedJTD / selected.originalContract) * 100, 100)}%`, background: '#4ECDC460' }} /></div>
+                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: `${Math.min((selected.billedJTD / selected.originalEstimate) * 100, 100)}%`, background: '#4ECDC460' }} /></div>
                     </div>
                   )}
-                  {selected.estProfit != null && selected.originalContract != null && (
+                  {selected.estProfit != null && (
                     <div className="fin-cell">
                       <div className="fin-label">Est. Profit</div>
-                      <div className="fin-bar-wrap"><div className="fin-bar profit-bar" style={{ width: `${Math.min((selected.estProfit / selected.originalContract) * 100, 100)}%` }} /></div>
+                      <div className="fin-bar-wrap"><div className="fin-bar profit-bar" style={{ width: `${Math.min((selected.estProfit / selected.originalEstimate) * 100, 100)}%` }} /></div>
                     </div>
                   )}
-                  {selected.projectedCost != null && selected.originalContract != null && (
+                  {selected.projectedCost != null && (
                     <div className="fin-cell">
                       <div className="fin-label">Projected Cost</div>
-                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: `${Math.min((selected.projectedCost / selected.originalContract) * 100, 100)}%`, background: '#94a3b840' }} /></div>
+                      <div className="fin-bar-wrap"><div className="fin-bar" style={{ width: `${Math.min((selected.projectedCost / selected.originalEstimate) * 100, 100)}%`, background: '#94a3b840' }} /></div>
                     </div>
                   )}
                 </div>
