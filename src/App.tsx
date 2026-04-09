@@ -271,9 +271,9 @@ export default function App() {
 
               <div className="detail-header">
                 <div className="detail-status-dot" style={{ background: statusColor(selected.status) }} />
-                <h2 className="detail-code">{selected.code}</h2>
+                <h2 className="detail-code">{selected.description}</h2>
               </div>
-              <p className="detail-desc">{selected.description}</p>
+              <p className="detail-desc">{selected.code}</p>
 
               <div className="detail-badges">
                 <span className="badge" style={{ background: statusColor(selected.status) + '22', color: statusColor(selected.status), border: `1px solid ${statusColor(selected.status)}55` }}>
