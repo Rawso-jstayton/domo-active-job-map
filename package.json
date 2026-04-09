@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
+    "domo:publish": "pnpm build && cp public/manifest.json dist/manifest.json && cp public/thumbnail.png dist/thumbnail.png && cd dist && domo publish",
     "domo:auth": "node scripts/domo-auth-setup.js",
     "domo:screenshot": "node scripts/domo-screenshot.js"
   },
