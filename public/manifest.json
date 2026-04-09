@@ -1,11 +1,8 @@
 {
   "name": "Active Job Map",
   "id": "7272ecf1-63b6-413c-8169-82715465d817",
-  "version": "1.1.0",
-  "size": {
-    "width": 12,
-    "height": 8
-  },
+  "version": "1.2.0",
+  "size": { "width": 12, "height": 8 },
   "fullpage": true,
   "thumbnail": "thumbnail.png",
   "fileName": "manifest.json",
@@ -13,6 +10,16 @@
     {
       "dataSetId": "9690c017-e110-44b1-9341-89284bd1680b",
       "alias": "jobs",
+      "fields": []
+    },
+    {
+      "dataSetId": "48b78dcd-c4f5-41ba-8231-b7d6f119eb48",
+      "alias": "spectrum_jobs",
+      "fields": []
+    },
+    {
+      "dataSetId": "df591fe9-899c-4fc1-9cef-38ef37d7a223",
+      "alias": "job_totals",
       "fields": []
     }
   ]

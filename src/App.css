@@ -317,6 +317,78 @@ body {
   opacity: 0.4;
 }
 
+/* ── Progress bar ─────────────────────────────────────────────────────────── */
+.progress-wrap {
+  margin-bottom: 16px;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.progress-track {
+  height: 6px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 99px;
+  transition: width 0.4s ease;
+}
+
+/* ── Financial grid ───────────────────────────────────────────────────────── */
+.fin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.fin-cell {
+  background: var(--bg);
+  padding: 10px 12px;
+}
+
+.fin-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 3px;
+}
+
+.fin-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.fin-value.profit {
+  color: #22c55e;
+}
+
+/* ── Detail row (side by side) ────────────────────────────────────────────── */
+.detail-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
 /* ── Legend ───────────────────────────────────────────────────────────────── */
 .legend {
   height: var(--legend-h);
