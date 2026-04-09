@@ -4,7 +4,7 @@ on:
   push:
     branches: [develop]
   pull_request:
-    branches: [main]
+    branches: [master]
     types: [closed]
 
 jobs:
@@ -33,7 +33,7 @@ jobs:
         run: pnpm build
 
       - name: Deploy to DOMO
-        uses: DomoApps/domo-publish-action@v1
+        uses: DomoApps/domoapps-publish-action@v2
         with:
           domo-access-token: ${{ secrets.DOMO_TOKEN }}
           build-command: echo "Already built"
@@ -70,7 +70,7 @@ jobs:
         run: pnpm build
 
       - name: Deploy to DOMO
-        uses: DomoApps/domo-publish-action@v1
+        uses: DomoApps/domoapps-publish-action@v2
         with:
           domo-access-token: ${{ secrets.DOMO_TOKEN }}
           build-command: echo "Already built"
